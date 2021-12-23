@@ -16,7 +16,6 @@ export default class Auth extends React.Component {
   handleChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-
   }
 
   handleSubmit(event) {
@@ -41,30 +40,32 @@ export default class Auth extends React.Component {
             <div className="border border-1 bg-white">
               <form onSubmit={handleSubmit}
                     className="form-control needs-validation d-flex flex-column text-center p-4 border-0">
-                <img src="images/pipergramlogo.png" alt="logo" />
+                <img src="pipergramlogo.png"
+                     className="w-75 mx-auto"
+                     alt="logo" />
                 <h6 className="text-muted">Sign up to see photos and videos from your friends.</h6>
-                <img className="rounded-circle border border-1 w-75 mx-auto mb-3"
-                     src="images/pfp.jpeg"
+                <img src="pfp.jpeg"
+                     className="rounded-circle border border-1 w-75 mx-auto mb-3"
                      alt="placeholder-pfp" />
                 <input onChange={handleChange}
-                       className="form-control mb-2"
+                       className="form-control bg-background mb-2"
                        type="file"
                        name="pfpUrl"
                        id="formFile" required/>
                 <input onChange={handleChange}
-                       className="form-control ps-2 mb-2"
+                  className="form-control bg-background ps-2 mb-2"
                        type="text"
                        name="fullName"
                        id="fullName"
                        placeholder="Full Name" required />
                 <input onChange={handleChange}
-                       className="form-control ps-2 mb-2"
+                  className="form-control bg-background ps-2 mb-2"
                        type="text"
                        name="username"
                        id="username"
                        placeholder="Username" required />
                 <input onChange={handleChange}
-                       className="form-control ps-2 mb-3"
+                  className="form-control bg-background ps-2 mb-3"
                        type="password"
                        name="password"
                        id="password"
