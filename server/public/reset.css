@@ -3,5 +3,21 @@
 }
 
 body {
+  background: #fafafa;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
   margin: 0;
+}
+
+input {
+  background-color: #fafafa !important;
+}
+
+.text-primary {
+  color: #0195f6 !important;
+}
+
+.btn-primary {
+  background-color: #0195f6 !important;
 }

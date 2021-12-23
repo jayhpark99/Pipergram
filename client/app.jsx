@@ -1,5 +1,5 @@
 import React from 'react';
-import Auth from './pages/auth';
+import Auth from './components/auth-form';
 
 export default class App extends React.Component {
   render() {

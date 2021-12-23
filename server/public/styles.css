@@ -1,33 +1,5 @@
-body {
-  background: #fafafa;
-}
-
-h2 {
-  color: #949494;
-}
-
-input {
-  border-radius: 3px;
-  margin-bottom: 5px;
-  padding: 4px;
-  border: 1px lightgrey solid;
-  background-color: #fafafa;
-}
-
-form {
-  padding: 1rem;
-}
-
-a {
-  text-decoration: none;
-  color: #0195f6;
-  font-weight: bold;
-}
-
-.btn-primary {
-  background-color: #0195f6;
-}
-
 .auth-form {
-  width: 300px;
+  width: 350px;
+  position: relative;
+  top: 6rem;
 }
