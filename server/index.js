@@ -25,7 +25,10 @@ app.use(staticMiddleware);
 
 app.post('/api/auth/sign-up', uploadsMiddleware, (req, res, next) => {
   const { fullName, username, password } = req.body;
-  const profilePicture = '/images/' + req.file.filename;
+  let profilePicture = '/images/image-1640645696721.jpeg';
+  if (req.file) {
+    profilePicture = '/images/' + req.file.filename;
+  }
   if (!profilePicture || !fullName || !username || !password) {
     throw new ClientError(400, 'profilePicture, fullName, username, and password are required fields');
   }
