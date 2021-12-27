@@ -3,3 +3,8 @@
   position: relative;
   top: 3rem;
 }
+
+.pfp {
+  object-fit: cover;
+  aspect-ratio: 1;
+}

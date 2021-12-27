@@ -11,7 +11,7 @@ create table "public"."users" (
   "fullName"       text           not null,
   "username"       text           not null,
   "hashedPassword" text           not null,
-  "pfpUrl"         text           not null,
+  "profilePicture" text           not null,
   "createdAt"      timestamptz(6) not null default now(),
   primary key ("userId"),
   unique ("username")

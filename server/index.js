@@ -3,6 +3,7 @@ const pg = require('pg');
 const express = require('express');
 const errorMiddleware = require('./error-middleware');
 const staticMiddleware = require('./static-middleware');
+const uploadsMiddleware = require('./uploads-middleware');
 const argon2 = require('argon2');
 const ClientError = require('./client-error');
 const jwt = require('jsonwebtoken');
@@ -22,20 +23,21 @@ app.use(jsonMiddleware);
 
 app.use(staticMiddleware);
 
-app.post('/api/auth/sign-up', (req, res, next) => {
-  const { pfpUrl, fullName, username, password } = req.body;
-  if (!pfpUrl || !fullName || !username || !password) {
-    throw new ClientError(400, 'pfpUrl, fullName, username, and password are required fields');
+app.post('/api/auth/sign-up', uploadsMiddleware, (req, res, next) => {
+  const { fullName, username, password } = req.body;
+  const profilePicture = '/images/' + req.file.filename;
+  if (!profilePicture || !fullName || !username || !password) {
+    throw new ClientError(400, 'profilePicture, fullName, username, and password are required fields');
   }
   argon2
     .hash(password)
     .then(hashedPassword => {
       const sql = `
-      insert into "users" ("fullName", "username", "hashedPassword", "pfpUrl")
+      insert into "users" ("fullName", "username", "hashedPassword", "profilePicture")
       values ($1 ,$2, $3, $4)
       returning *
       `;
-      const params = [fullName, username, hashedPassword, pfpUrl];
+      const params = [fullName, username, hashedPassword, profilePicture];
       return db.query(sql, params);
     })
     .then(result => {
