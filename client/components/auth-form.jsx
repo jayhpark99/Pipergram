@@ -12,7 +12,8 @@ export default class Auth extends React.Component {
     };
     this.fileInputRef = React.createRef();
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSignUp = this.handleSignUp.bind(this);
+    this.handleSignIn = this.handleSignIn.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -25,8 +26,9 @@ export default class Auth extends React.Component {
     }
   }
 
-  handleSubmit(event) {
+  handleSignUp(event) {
     event.preventDefault();
+    this.setState({ isSigningUp: false });
     const formData = new FormData();
     formData.append('image', this.fileInputRef.current.files[0]);
     formData.append('fullName', this.state.fullName);
@@ -37,25 +39,45 @@ export default class Auth extends React.Component {
       body: formData
     })
       .then(res => {
-        this.fileInputRef.current.value = null;
         res.json();
       })
       .catch(err => console.error(err));
   }
 
+  handleSignIn(event) {
+    event.preventDefault();
+    const req = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state)
+    };
+    fetch('/api/auth/sign-in', req)
+      .then(res => res.json())
+      .then(result => {
+        if (result.user && result.token) {
+          console.log('you have signed in!!');
+        } else {
+          console.log('rejected');
+        }
+      })
+      .catch(err => console.error(err));
+  }
+
   handleClick(event) {
-    this.setState({ isSigningUp: !this.state.isSigningUp });
+    this.setState({ isSigningUp: !this.state.isSigningUp, profilePicture: 'pfp.jpeg' });
   }
 
   render() {
-    const { handleChange, handleSubmit, handleClick } = this;
+    const { handleChange, handleSignUp, handleSignIn, handleClick } = this;
     if (this.state.isSigningUp === true) {
       return (
         <>
           <div className="auth-form container">
             <div className="row mb-1">
               <div className="border border-1 bg-white">
-                <form onSubmit={handleSubmit}
+                <form onSubmit={handleSignUp}
                   className="form-control needs-validation d-flex flex-column text-center p-4 border-0">
                   <img src="pipergramlogo.png"
                     className="w-75 mx-auto"
@@ -70,7 +92,7 @@ export default class Auth extends React.Component {
                     type="file"
                     name="profilePicture"
                     id="formFile"
-                    ref={this.fileInputRef} required />
+                    ref={this.fileInputRef} />
                   <input onChange={handleChange}
                     className="form-control bg-background ps-2 mb-2"
                     type="text"
@@ -89,13 +111,17 @@ export default class Auth extends React.Component {
                     name="password"
                     id="password"
                     placeholder="Password" required />
-                  <button className="btn btn-primary"><b>Sign Up</b></button>
+                  <button className="btn btn-primary mt-3"><b>Sign Up</b></button>
                 </form>
               </div>
             </div>
             <div className="row">
               <div className="border border-1 bg-white text-center pt-3">
-                <p>Have an account? <a onClick={handleClick} className="text-decoration-none text-primary" href="#sign-up">Log in</a></p>
+                <p>{'Have an account? '}
+                  <a onClick={handleClick}
+                     className="text-decoration-none text-primary"
+                     href="#sign-up">Log in</a>
+                </p>
               </div>
             </div>
           </div>
@@ -107,7 +133,7 @@ export default class Auth extends React.Component {
           <div className="auth-form container">
             <div className="row mb-1">
               <div className="border border-1 bg-white">
-                <form onSubmit={handleSubmit}
+                <form onSubmit={handleSignIn}
                   className="form-control needs-validation d-flex flex-column text-center p-4 border-0">
                   <img src="pipergramlogo.png"
                     className="w-75 mx-auto"
@@ -124,13 +150,18 @@ export default class Auth extends React.Component {
                     name="password"
                     id="password"
                     placeholder="Password" required />
-                  <button className="btn btn-primary"><b>Log In</b></button>
+                  <button className="btn btn-primary mt-3"><b>Log In</b></button>
                 </form>
               </div>
             </div>
             <div className="row">
               <div className="border border-1 bg-white text-center pt-3">
-                <p>Don't Have an Account? <a onClick={handleClick} className="text-decoration-none text-primary" href="#sign-in">Sign Up</a></p>
+                <p>{'Don\'t Have an Account? '}
+                  <a
+                    onClick={handleClick}
+                    className="text-decoration-none text-primary"
+                    href="#sign-in">Sign Up</a>
+                </p>
               </div>
             </div>
           </div>
