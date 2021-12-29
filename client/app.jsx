@@ -2,7 +2,22 @@ import React from 'react';
 import Auth from './components/auth-form';
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: null,
+      isAuthorizing: true
+    };
+    this.handleSignIn = this.handleSignIn.bind(this);
+  }
+
+  handleSignIn(result) {
+    const { user, token } = result;
+    window.localStorage.setItem('react-context-jwt', token);
+    this.setState({ user });
+  }
+
   render() {
-    return <Auth />;
+    return <Auth onSignIn={this.handleSignIn}/>;
   }
 }
