@@ -4,7 +4,27 @@
   top: 3rem;
 }
 
+nav {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
 .pfp {
   object-fit: cover;
   aspect-ratio: 1;
+}
+
+.logo {
+  width: 150px;
+}
+
+.home-icon,
+.create-icon,
+.heart-icon,
+.profile-icon {
+  width: 30px;
+  margin-right: 10px;
 }

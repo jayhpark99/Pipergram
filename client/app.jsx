@@ -1,6 +1,6 @@
 import React from 'react';
 import Auth from './components/auth-form';
-import Navbar from './components/navbar';
+import Home from './pages/home';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -19,11 +19,9 @@ export default class App extends React.Component {
   }
 
   render() {
-    return (
-      <>
-        <Auth onSignIn={this.handleSignIn} />;
-        <Navbar />
-      </>
-    );
+    if (this.state.isAuthorizing === true) return <Auth onSignIn={this.handleSignIn} />;
+    else {
+      return <Home />;
+    }
   }
 }
