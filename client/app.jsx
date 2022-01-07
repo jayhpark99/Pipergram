@@ -20,8 +20,6 @@ export default class App extends React.Component {
 
   render() {
     if (this.state.isAuthorizing === true) return <Auth onSignIn={this.handleSignIn} />;
-    else {
-      return <Home />;
-    }
+    return <Home />;
   }
 }

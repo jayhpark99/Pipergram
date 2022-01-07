@@ -74,7 +74,7 @@ export default class Auth extends React.Component {
     if (this.state.isSigningUp === true) {
       return (
         <>
-          <div className="auth-form container">
+          <div className="auth-form container pb-5">
             <div className="row mb-1">
               <div className="border border-1 bg-white">
                 <form onSubmit={handleSignUp}

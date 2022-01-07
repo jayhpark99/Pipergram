@@ -24,7 +24,40 @@ nav {
 .home-icon,
 .create-icon,
 .heart-icon,
-.profile-icon {
-  width: 30px;
+.profile-icon,
+.comment-icon {
+  width: 25px;
   margin-right: 10px;
+  cursor: pointer;
+}
+
+.post {
+  margin-top: 2rem;
+  padding: 0.5rem 0;
+  font-size: 13px;
+}
+
+.post-picture {
+  padding: 0.5rem 0;
+}
+
+.username,
+.location {
+  margin: 0;
+}
+
+.time {
+  font-size: 11px;
+}
+
+.background {
+  background-color: rgba(41, 41, 41, 0.75);
+  position: fixed;
+  inset: 0;
+}
+
+@media screen and (min-width: 575px) {
+  .post {
+    border: 1px solid lightgray;
+  }
 }
