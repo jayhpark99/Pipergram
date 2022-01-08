@@ -1,5 +1,6 @@
 import React from 'react';
 import PostModal from './modal';
+import { Link } from 'react-router-dom';
 
 export default class Navbar extends React.Component {
   constructor(props) {
@@ -25,14 +26,18 @@ export default class Navbar extends React.Component {
           <div className="container d-flex justify-content-between align-items-center">
             <img className="logo" src="pipergramlogo.png" />
             <div className="icons">
-              <img className="home-icon" src="house-solid.svg" />
+              <Link to="/">
+                <img className="home-icon" src="house-solid.svg" />
+              </Link>
               <img
                 onClick={this.handleShow}
                 className="create-icon"
                 src="edit-regular.svg"
               />
               <img className="heart-icon" src="heart-regular.svg" />
-              <img className="profile-icon rounded-circle" src="pfp.jpeg" />
+              <Link to="/profile">
+                <img className="profile-icon rounded-circle" src="pfp.jpeg" />
+              </Link>
             </div>
           </div>
         </nav>

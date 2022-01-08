@@ -10,7 +10,8 @@ module.exports = {
   },
   entry: clientPath,
   output: {
-    path: serverPublicPath
+    path: serverPublicPath,
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -30,6 +31,7 @@ module.exports = {
   },
   devtool: 'source-map',
   devServer: {
+    historyApiFallback: true,
     host: '0.0.0.0',
     port: process.env.DEV_SERVER_PORT,
     static: {
