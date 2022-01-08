@@ -1,5 +1,5 @@
 import React from 'react';
-import Auth from './components/auth-form';
+// import Auth from './components/auth-form';
 import Home from './pages/home';
 
 export default class App extends React.Component {
@@ -19,7 +19,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    if (this.state.isAuthorizing === true) return <Auth onSignIn={this.handleSignIn} />;
+    // if (this.state.isAuthorizing === true) return <Auth onSignIn={this.handleSignIn} />;
     return <Home />;
   }
 }

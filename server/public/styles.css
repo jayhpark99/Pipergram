@@ -50,14 +50,12 @@ nav {
   font-size: 11px;
 }
 
-.background {
-  background-color: rgba(41, 41, 41, 0.75);
-  position: fixed;
-  inset: 0;
-}
-
 @media screen and (min-width: 575px) {
   .post {
     border: 1px solid lightgray;
   }
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
