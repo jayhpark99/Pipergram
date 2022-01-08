@@ -1,7 +1,5 @@
 .auth-form {
   width: 350px;
-  position: relative;
-  top: 3rem;
 }
 
 nav {
@@ -46,8 +44,15 @@ nav {
   margin: 0;
 }
 
+.caption,
+.comment-1 {
+  margin-bottom: 0.25rem;
+}
+
 .time {
-  font-size: 11px;
+  font-size: 9px;
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 @media screen and (min-width: 575px) {

@@ -74,6 +74,62 @@ export default class Auth extends React.Component {
     if (this.state.isSigningUp === true) {
       return (
         <>
+          <div className="auth-form container">
+            <div className="row mb-1">
+              <div className="border border-1 bg-white">
+                <form
+                  onSubmit={handleSignIn}
+                  className="form-control needs-validation d-flex flex-column text-center p-4 border-0"
+                >
+                  <img
+                    src="pipergramlogo.png"
+                    className="w-75 mx-auto"
+                    alt="logo"
+                  />
+                  <input
+                    onChange={handleChange}
+                    className="form-control bg-background ps-2 mb-2"
+                    type="text"
+                    name="username"
+                    id="username"
+                    placeholder="Username"
+                    required
+                  />
+                  <input
+                    onChange={handleChange}
+                    className="form-control bg-background ps-2 mb-3"
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="Password"
+                    required
+                  />
+                  <button className="btn btn-primary mt-3">
+                    <b>Log In</b>
+                  </button>
+                </form>
+              </div>
+            </div>
+            <div className="row">
+              <div className="border border-1 bg-white text-center pt-3">
+                <p>
+                  {"Don't Have an Account? "}
+                  <a
+                    onClick={handleClick}
+                    className="text-decoration-none text-primary"
+                    href="#sign-in"
+                  >
+                    Sign Up
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </>
+      );
+    } else {
+      return (
+         <>
           <div className="auth-form container pb-5">
             <div className="row mb-1">
               <div className="border border-1 bg-white">
@@ -121,46 +177,6 @@ export default class Auth extends React.Component {
                   <a onClick={handleClick}
                      className="text-decoration-none text-primary"
                      href="#sign-up">Log in</a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </>
-      );
-    } else {
-      return (
-        <>
-          <div className="auth-form container">
-            <div className="row mb-1">
-              <div className="border border-1 bg-white">
-                <form onSubmit={handleSignIn}
-                  className="form-control needs-validation d-flex flex-column text-center p-4 border-0">
-                  <img src="pipergramlogo.png"
-                    className="w-75 mx-auto"
-                    alt="logo" />
-                  <input onChange={handleChange}
-                    className="form-control bg-background ps-2 mb-2"
-                    type="text"
-                    name="username"
-                    id="username"
-                    placeholder="Username" required />
-                  <input onChange={handleChange}
-                    className="form-control bg-background ps-2 mb-3"
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder="Password" required />
-                  <button className="btn btn-primary mt-3"><b>Log In</b></button>
-                </form>
-              </div>
-            </div>
-            <div className="row">
-              <div className="border border-1 bg-white text-center pt-3">
-                <p>{'Don\'t Have an Account? '}
-                  <a
-                    onClick={handleClick}
-                    className="text-decoration-none text-primary"
-                    href="#sign-in">Sign Up</a>
                 </p>
               </div>
             </div>

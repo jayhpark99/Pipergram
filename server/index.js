@@ -82,6 +82,25 @@ app.post('/api/auth/sign-in', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.post('/api/posts', uploadsMiddleware, (req, res, next) => {
+  const { location, caption, userId } = req.body;
+  const postPicture = '/images/' + req.file.filename;
+  if (!userId || !postPicture || !location || !caption) {
+    throw new ClientError(400, 'postPicture, location, and caption are required fields');
+  }
+  const sql = `
+      insert into "posts" ("location", "caption", "postPicture", "userId")
+      values ($1 ,$2, $3, $4)
+      returning *
+      `;
+  const params = [location, caption, postPicture, userId];
+  db.query(sql, params)
+    .then(result => {
+      res.status(201).json(result.rows[0]);
+    })
+    .catch(err => next(err));
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
