@@ -7,6 +7,7 @@ const uploadsMiddleware = require('./uploads-middleware');
 const argon2 = require('argon2');
 const ClientError = require('./client-error');
 const jwt = require('jsonwebtoken');
+const authorizationMiddleWare = require('./authorization-middleware');
 
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
@@ -78,6 +79,26 @@ app.post('/api/auth/sign-in', (req, res, next) => {
           const token = jwt.sign(payload, process.env.TOKEN_SECRET);
           res.json({ token, user: payload });
         });
+    })
+    .catch(err => next(err));
+});
+
+app.post('/api/posts', authorizationMiddleWare, uploadsMiddleware, (req, res, next) => {
+  const { location, caption } = req.body;
+  const userId = req.user.userId;
+  const postPicture = '/images/' + req.file.filename;
+  if (!userId || !postPicture || !location || !caption) {
+    throw new ClientError(400, 'postPicture, location, and caption are required fields');
+  }
+  const sql = `
+      insert into "posts" ("location", "caption", "postPicture", "userId")
+      values ($1 ,$2, $3, $4)
+      returning *
+      `;
+  const params = [location, caption, postPicture, userId];
+  db.query(sql, params)
+    .then(result => {
+      res.status(201).json(result.rows[0]);
     })
     .catch(err => next(err));
 });
