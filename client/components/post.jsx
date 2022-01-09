@@ -1,14 +1,6 @@
 import React from 'react';
 
 export default class Post extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      timeAgo: null,
-      likes: [],
-      comments: []
-    };
-  }
 
   render() {
     return (

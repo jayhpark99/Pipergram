@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AppContext from './lib/app-context';
 import Auth from './pages/auth-form';
 import Home from './pages/home';
-import Profile from './pages/profile';
 import decodeToken from './lib/decode-token';
 
 export default class App extends React.Component {
@@ -41,7 +40,7 @@ export default class App extends React.Component {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="profile" element={<Profile />} />
+            {/* <Route path="profile" element={<Profile />} /> */}
           </Routes>
         </BrowserRouter>
       </AppContext.Provider>
