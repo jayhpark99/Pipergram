@@ -56,6 +56,10 @@ nav {
   margin-bottom: 0.25rem;
 }
 
+li {
+  list-style: none;
+}
+
 @media screen and (min-width: 575px) {
   .post {
     border: 1px solid lightgray;
