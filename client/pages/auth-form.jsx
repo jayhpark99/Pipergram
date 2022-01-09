@@ -4,7 +4,7 @@ export default class Auth extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isSigningUp: true,
+      isSignedUp: true,
       profilePicture: 'pfp.jpeg',
       fullName: '',
       username: '',
@@ -28,7 +28,7 @@ export default class Auth extends React.Component {
 
   handleSignUp(event) {
     event.preventDefault();
-    this.setState({ isSigningUp: false });
+    this.setState({ isSignedUp: true });
     const formData = new FormData();
     formData.append('image', this.fileInputRef.current.files[0]);
     formData.append('fullName', this.state.fullName);
@@ -66,12 +66,12 @@ export default class Auth extends React.Component {
   }
 
   handleClick(event) {
-    this.setState({ isSigningUp: !this.state.isSigningUp, profilePicture: 'pfp.jpeg' });
+    this.setState({ isSignedUp: !this.state.isSignedUp, profilePicture: 'pfp.jpeg' });
   }
 
   render() {
     const { handleChange, handleSignUp, handleSignIn, handleClick } = this;
-    if (this.state.isSigningUp === true) {
+    if (this.state.isSignedUp === true) {
       return (
         <>
           <div className="auth-form container">
