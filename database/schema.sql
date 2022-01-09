@@ -35,7 +35,7 @@ CREATE TABLE "public"."posts" (
 	"caption" TEXT NOT NULL,
 	"postPicture" TEXT NOT NULL,
 	"location" TEXT,
-	"createdAt" timestamp with time zone NOT NULL,
+	"createdAt" timestamp with time zone NOT NULL default now(),
 	CONSTRAINT "posts_pk" PRIMARY KEY ("photoId")
 ) WITH (
   OIDS=FALSE
@@ -46,7 +46,7 @@ CREATE TABLE "public"."posts" (
 CREATE TABLE "public"."comments" (
 	"commentId" serial NOT NULL,
 	"userId" int NOT NULL,
-	"createdAt" timestamp with time zone NOT NULL,
+	"createdAt" timestamp with time zone NOT NULL default now(),
 	"photoId" int NOT NULL,
 	"content" TEXT NOT NULL,
 	CONSTRAINT "comments_pk" PRIMARY KEY ("commentId")
