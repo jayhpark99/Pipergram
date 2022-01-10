@@ -1,4 +1,5 @@
 import React from 'react';
+import TimeAgo from 'timeago-react';
 
 export default class Post extends React.Component {
   constructor(props) {
@@ -36,7 +37,11 @@ export default class Post extends React.Component {
                 <div className="footer ms-2">
                   <div className="comment-section">
                     <p className="caption"><strong>{post.username}</strong> {post.caption}</p>
-                    <p className="time text-secondary">16 HOURS AGO</p>
+                    <TimeAgo
+                      datetime={post.createdAt}
+                      locale='vi'
+                      className="time text-secondary"
+                      />
                   </div>
                 </div>
               </div>
