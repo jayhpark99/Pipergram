@@ -31,6 +31,10 @@ nav {
   aspect-ratio: 1;
 }
 
+.fas.fa-heart {
+  color: #ed4956;
+}
+
 .post {
   margin-top: 2rem;
   padding: 0.5rem 0;

@@ -36,7 +36,7 @@ export default class Navbar extends React.Component {
               />
               <img className="heart-icon" src="heart-regular.svg" />
               <Link to="/profile">
-                <img className="profile-icon rounded-circle" src="pfp.jpeg" />
+                <img className="profile-icon rounded-circle" src='pfp.jpeg' />
               </Link>
             </div>
           </div>
