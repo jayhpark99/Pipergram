@@ -1,5 +1,6 @@
 import React from 'react';
 import TimeAgo from 'timeago-react';
+import AppContext from '../lib/app-context';
 
 export default class Post extends React.Component {
   constructor(props) {
@@ -9,8 +10,18 @@ export default class Post extends React.Component {
   }
 
   handleClick(event) {
+    const { userId } = this.context.user;
+    const photoId = event.target.closest('li').getAttribute('photoid');
+    const data = { userId, photoId };
+    fetch('/api/likes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .catch(err => console.error(err));
     event.target.className = 'fas fa-heart heart-icon fa-2x';
-
   }
 
   render() {
@@ -27,7 +38,7 @@ export default class Post extends React.Component {
     <ul>
      { this.state.posts.map(post => {
        return (
-         <li key={post.photoId}>
+         <li key={post.photoId} photoid={post.photoId}>
            <div className="post bg-white">
              <div className="header ms-2">
                <div className="row align-items-center">
@@ -68,7 +79,7 @@ export default class Post extends React.Component {
        );
      })}
     </ul>
-
     );
   }
 }
+Post.contextType = AppContext;

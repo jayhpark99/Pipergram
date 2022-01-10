@@ -119,6 +119,16 @@ app.post('/api/posts', authorizationMiddleWare, uploadsMiddleware, (req, res, ne
     .catch(err => next(err));
 });
 
+app.post('/api/likes', (req, res, next) => {
+  const { userId, photoId } = req.body;
+  const sql = `
+  insert into "likes" ("userId", "photoId")
+  values(${userId}, ${photoId})
+  returning *`;
+  db.query(sql)
+    .catch(err => next(err));
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
