@@ -83,6 +83,22 @@ app.post('/api/auth/sign-in', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/posts', (req, res, next) => {
+  const sql = `
+  select "posts".*,
+  "users"."profilePicture",
+  "users"."username"
+  from "posts"
+  join "users" using ("userId")
+  order by "photoId" desc
+  `;
+  db.query(sql)
+    .then(result => {
+      res.status(200).json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
 app.post('/api/posts', authorizationMiddleWare, uploadsMiddleware, (req, res, next) => {
   const { location, caption } = req.body;
   const userId = req.user.userId;

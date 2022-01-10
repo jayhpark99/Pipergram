@@ -43,6 +43,7 @@ export default class PostModal extends React.Component {
     })
       .then(() => {
         this.props.handleClose();
+        this.setState({ postPicture: 'placeholder.png' });
       })
       .catch(err => console.error(err));
   }
