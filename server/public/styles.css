@@ -11,7 +11,7 @@ nav {
 }
 
 .pfp {
-  object-fit: cover;
+  object-fit: contain;
   aspect-ratio: 1;
 }
 
@@ -28,6 +28,7 @@ nav {
   width: 25px;
   margin-right: 10px;
   cursor: pointer;
+  aspect-ratio: 1;
 }
 
 .post {
@@ -58,6 +59,10 @@ nav {
 
 li {
   list-style: none;
+}
+
+ul {
+  padding: 0;
 }
 
 @media screen and (min-width: 575px) {
