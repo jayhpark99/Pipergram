@@ -13,16 +13,45 @@ export default class Post extends React.Component {
     const { userId } = this.context.user;
     const photoId = event.target.closest('li').getAttribute('photoid');
     const data = { userId, photoId };
-    fetch('/api/likes', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-      .catch(err => console.error(err));
-    event.target.className = 'fas fa-heart heart-icon fa-2x';
+    if (event.target.className === 'far fa-heart heart-icon fa-2x') {
+      fetch('/api/likes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      }).catch(err => console.error(err));
+      event.target.className = 'fas fa-heart heart-icon fa-2x';
+    } else if (event.target.className === 'fas fa-heart heart-icon fa-2x') {
+      fetch('/api/likes', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      }).catch(err => console.error(err));
+      event.target.className = 'far fa-heart heart-icon fa-2x';
+    }
   }
+
+  // componentDidMount() {
+  //   const { userId } = this.context.user;
+  //   fetch('/api/likes', {
+  //     method: 'PUT',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(userId)
+  //   })
+  //     .then(res => {
+  //       console.log(res);
+  //       res.json();
+  //     })
+  //     .then(result => {
+  //       console.log(result);
+  //     })
+  //     .catch(err => console.error(err));
+  // }
 
   render() {
     const { handleClick } = this;
