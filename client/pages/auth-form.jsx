@@ -57,6 +57,7 @@ export default class Auth extends React.Component {
       .then(res => res.json())
       .then(result => {
         if (result.user && result.token) {
+          console.log(result);
           this.props.onSignIn(result);
         } else {
           alert('invalid login');
