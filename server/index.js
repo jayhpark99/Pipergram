@@ -141,19 +141,19 @@ app.delete('/api/likes', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// app.put('/api/likes', (req, res, next) => {
-//   const { userId } = req.body;
-//   const params = [userId];
-//   const sql = `
-//   select "photoId"
-//   from "likes"
-//   where "userId" = $1`;
-//   db.query(sql, params)
-//     .then(result => {
-//       res.status(201).json(result.rows);
-//     })
-//     .catch(err => next(err));
-// });
+app.put('/api/likes', (req, res, next) => {
+  const { userId } = req.body;
+  const params = [userId];
+  const sql = `
+  select "photoId"
+  from "likes"
+  where "userId" = $1`;
+  db.query(sql, params)
+    .then(result => {
+      res.status(201).json(result.rows);
+    })
+    .catch(err => next(err));
+});
 
 app.use(errorMiddleware);
 
