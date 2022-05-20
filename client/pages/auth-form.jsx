@@ -1,5 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
+export const Auth = props => {
+  const [isSignedUp, setIsSignedUp] = useState(true);
+  const [profilePicture, setProfilePicture] = useState('pfp.jpeg');
+  const [fullName, setFullName] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('')
+}
 export default class Auth extends React.Component {
   constructor(props) {
     super(props);
