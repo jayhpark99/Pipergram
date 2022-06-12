@@ -56,8 +56,7 @@ app.post('/api/auth/sign-in', (req, res, next) => {
     throw new ClientError(401, 'invalid login');
   }
   const sql = `
-  select "userId",
-         "hashedPassword"
+  select *
     from "users"
    where "username" = $1
   `;
@@ -68,14 +67,14 @@ app.post('/api/auth/sign-in', (req, res, next) => {
       if (!user) {
         throw new ClientError(401, 'invalid login');
       }
-      const { userId, hashedPassword } = user;
+      const { userId, fullName, hashedPassword, profilePicture } = user;
       return argon2
         .verify(hashedPassword, password)
         .then(isMatching => {
           if (!isMatching) {
             throw new ClientError(401, 'invalid login');
           }
-          const payload = { userId, username };
+          const payload = { userId, username, fullName, profilePicture };
           const token = jwt.sign(payload, process.env.TOKEN_SECRET);
           res.json({ token, user: payload });
         });
@@ -115,6 +114,42 @@ app.post('/api/posts', authorizationMiddleWare, uploadsMiddleware, (req, res, ne
   db.query(sql, params)
     .then(result => {
       res.status(201).json(result.rows[0]);
+    })
+    .catch(err => next(err));
+});
+
+app.post('/api/likes', (req, res, next) => {
+  const { userId, photoId } = req.body;
+  const params = [userId, photoId];
+  const sql = `
+  insert into "likes" ("userId", "photoId")
+  values($1, $2)
+  returning *`;
+  db.query(sql, params)
+    .catch(err => next(err));
+});
+
+app.delete('/api/likes', (req, res, next) => {
+  const { userId, photoId } = req.body;
+  const params = [userId, photoId];
+  const sql = `
+  delete from "likes"
+  where "userId" = $1
+  and "photoId" = $2`;
+  db.query(sql, params)
+    .catch(err => next(err));
+});
+
+app.put('/api/likes', (req, res, next) => {
+  const { userId } = req.body;
+  const params = [userId];
+  const sql = `
+  select "photoId"
+  from "likes"
+  where "userId" = $1`;
+  db.query(sql, params)
+    .then(result => {
+      res.status(201).json(result.rows);
     })
     .catch(err => next(err));
 });

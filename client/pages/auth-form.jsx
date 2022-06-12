@@ -117,7 +117,7 @@ export default class Auth extends React.Component {
                   <a
                     onClick={handleClick}
                     className="text-decoration-none text-primary"
-                    href="#sign-in"
+                    href="#"
                   >
                     Sign Up
                   </a>
@@ -176,7 +176,7 @@ export default class Auth extends React.Component {
                 <p>{'Have an account? '}
                   <a onClick={handleClick}
                      className="text-decoration-none text-primary"
-                     href="#sign-up">Log in</a>
+                     href="#">Log in</a>
                 </p>
               </div>
             </div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AppContext from './lib/app-context';
 import Auth from './pages/auth-form';
 import Home from './pages/home';
@@ -37,12 +36,7 @@ export default class App extends React.Component {
     }
     return (
       <AppContext.Provider value={contextValue}>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            {/* <Route path="profile" element={<Profile />} /> */}
-          </Routes>
-        </BrowserRouter>
+        <Home />
       </AppContext.Provider>
     );
   }
