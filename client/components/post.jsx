@@ -34,20 +34,6 @@ export default class Post extends React.Component {
     }
   }
 
-  componentDidMount() {
-    // const { userId } = this.context.user;
-    // const data = { userId };
-    // fetch('/api/likes', {
-    //   method: 'PUT',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify(data)
-    // })
-    //   .then(res => res.json())
-    //   .catch(err => console.error(err));
-  }
-
   render() {
     const { handleClick } = this;
     fetch('/api/posts', {

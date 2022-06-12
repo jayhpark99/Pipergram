@@ -1,12 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-export const Auth = props => {
-  const [isSignedUp, setIsSignedUp] = useState(true);
-  const [profilePicture, setProfilePicture] = useState('pfp.jpeg');
-  const [fullName, setFullName] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('')
-}
 export default class Auth extends React.Component {
   constructor(props) {
     super(props);
@@ -64,7 +57,6 @@ export default class Auth extends React.Component {
       .then(res => res.json())
       .then(result => {
         if (result.user && result.token) {
-          console.log(result);
           this.props.onSignIn(result);
         } else {
           alert('invalid login');
@@ -125,7 +117,7 @@ export default class Auth extends React.Component {
                   <a
                     onClick={handleClick}
                     className="text-decoration-none text-primary"
-                    href="#sign-in"
+                    href="#"
                   >
                     Sign Up
                   </a>
@@ -184,7 +176,7 @@ export default class Auth extends React.Component {
                 <p>{'Have an account? '}
                   <a onClick={handleClick}
                      className="text-decoration-none text-primary"
-                     href="#sign-up">Log in</a>
+                     href="#">Log in</a>
                 </p>
               </div>
             </div>
